@@ -121,7 +121,8 @@ class _MobileScaffoldState extends State<MobileScaffold> {
 
    final deptid = (user?.listofProcessEntity?.isNotEmpty ?? false) ? user!.listofProcessEntity!.first.deptId : 1057;
                       
-    final shiftgroupId = (user?.listofProcessEntity?.isNotEmpty ?? false) ? user!.listofProcessEntity!.first.shiftgroupId : 1;
+    final shiftgroupId =  user?.listofProcessEntity?.first?.shiftgroupId ?? 1;
+
     final totalemployee =
         Provider.of<AttendanceCountProvider>(context, listen: true)
             .user
@@ -223,12 +224,21 @@ class _MobileScaffoldState extends State<MobileScaffold> {
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                    
                       children: [
-                        MobileShitStatusWidget(
-                          deptid: deptid,
-                          processid: processId,
-                          shiftgroupid: shiftgroupId,
-                          psid: psId,
+                        Padding(
+                          padding: EdgeInsets.only(left:8.w,right: 8.w),
+                          child: Material(
+                          
+        elevation: 3,
+        borderRadius: BorderRadius.circular(5.r),
+                            child: MobileShitStatusWidget(
+                              deptid: deptid,
+                              processid: processId,
+                              shiftgroupid: shiftgroupId,
+                              psid: psId,
+                            ),
+                          ),
                         ),
         
                         MobileProcessQtyWidget(id: processId, psid: psId),

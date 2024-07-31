@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -8,16 +7,13 @@ import 'package:http/http.dart' as http;
 import 'package:prominous/constant/request_data_model/delete_production_entry.dart';
 import 'package:prominous/constant/show_pop_error.dart';
 import 'package:prominous/features/data/core/api_constant.dart';
-import 'package:prominous/features/presentation_layer/api_services/activity_di.dart';
 import 'package:prominous/features/presentation_layer/api_services/emp_production_entry_di.dart';
 import 'package:prominous/features/presentation_layer/api_services/employee_di.dart';
 import 'package:prominous/features/presentation_layer/api_services/product_di.dart';
 import 'package:prominous/features/presentation_layer/api_services/recent_activity.dart';
 import 'package:prominous/features/presentation_layer/mobile_page/mobile%20widget/mobile_production_edit_entry.dart';
-
 import 'package:prominous/features/presentation_layer/provider/product_provider.dart';
 import 'package:prominous/features/presentation_layer/provider/recent_activity_provider.dart';
-import 'package:prominous/features/presentation_layer/widget/emp_production_entry_widget/edit_emp_production_details..dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -235,118 +231,123 @@ class _RecentHistoryBottomSheetState extends State<RecentHistoryBottomSheet> {
                     right: 15,
                     top: 30,
                   ),
-                  child: Container(
-                    width: 300,
-                    height: 110,
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(150, 235, 236, 255),
-                      borderRadius: BorderRadius.circular(5),
-                      border: Border.all(width: 1, color: Colors.grey.shade100),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 20, right: 20, top: 4, bottom: 4),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Container(
-                                    width: 25,
-                                    height: 25,
-                                    alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(22),
-                                      color: Color.fromARGB(255, 80, 96, 203),
-                                    ),
-                                    child: Text('${index + 1}',
-                                        style: const TextStyle(
-                                            fontSize: 14,
-                                            color: Colors.white,
-                                            fontFamily: 'Lexend')),
-                                  ),
-                                  SizedBox(
-                                    width: 16,
-                                  ),
-                                  Text(
-                                      '${(data?.ipditemid != 0 ? productname?.firstWhere(
-                                            (product) =>
-                                                data?.ipditemid ==
-                                                product.productid,
-                                          ).productName : " ")}',
-                                      style: TextStyle(
-                                          fontSize: 16.sp,
-                                          color:
-                                              Color.fromARGB(255, 80, 96, 203),
-                                          fontFamily: 'Lexend')),
-                                ],
-                              ),
-                              IconButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              MobileProductionEditEntry(
-                                            deptid: data?.deptid ?? 1057,
-                                            empid: data?.ipdempid ?? 0,
-                                            isload: true,
-                                            processid: data?.processid ?? 0,
-                                            psid: data?.ipdpsid,
-                                            ipdid: data?.ipdid,
-                                            attenceid: widget.attenceid,
-                                            attendceStatus:
-                                                widget.attendceStatus,
-                                            pwsId: widget.pwsid,
-                                            workstationName:
-                                                widget.workstationName,
-                                          ),
-                                        ));
-                                  },
-                                  icon: Icon(Icons.edit_sharp,
-                                      color: Color.fromARGB(255, 80, 96, 203))),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                  '${totime?.toString().substring(0, totime.toString().length - 7)}',
-                                  style: TextStyle(
-                                      fontFamily: "lexend",
-                                      fontSize: 15.sp,
-                                      color: Colors.black54)),
-                              if (index == 0)
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                  child:  Material(
+        
+        elevation: 3,
+        borderRadius: BorderRadius.circular(5.r),
+                    child: Container(
+                      width: 300,
+                      height: 110,
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(150, 235, 236, 255),
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(width: 1, color: Colors.grey.shade100),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            left: 20, right: 20, top: 4, bottom: 4),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
                                   children: [
-                                    SizedBox(
-                                      height: 40,
-                                      child: IconButton(
-                                        onPressed: () async {
-                                          // updateproduction(widget.processid);
-                                          deletePop(context, data?.ipdid ?? 0,
-                                              data?.ipdpsid ?? 0);
-                                        },
-                                        icon: SvgPicture.asset(
-                                          'assets/svg/trash.svg',
-                                          color: Colors.red,
-                                          width: 30,
-                                        ),
+                                    Container(
+                                      width: 25,
+                                      height: 25,
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(22),
+                                        color: Color.fromARGB(255, 80, 96, 203),
                                       ),
+                                      child: Text('${index + 1}',
+                                          style: const TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.white,
+                                              fontFamily: 'Lexend')),
                                     ),
+                                    SizedBox(
+                                      width: 16,
+                                    ),
+                                    Text(
+                                        '${(data?.ipditemid != 0 ? productname?.firstWhere(
+                                              (product) =>
+                                                  data?.ipditemid ==
+                                                  product.productid,
+                                            ).productName : " ")}',
+                                        style: TextStyle(
+                                            fontSize: 16.sp,
+                                            color:
+                                                Color.fromARGB(255, 80, 96, 203),
+                                            fontFamily: 'Lexend')),
                                   ],
                                 ),
-                              if (index != 0)
-                                SizedBox(height: 30, child: Text("")),
-                            ],
-                          )
-                        ],
+                                IconButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                MobileProductionEditEntry(
+                                              deptid: data?.deptid ?? 1057,
+                                              empid: data?.ipdempid ?? 0,
+                                              isload: true,
+                                              processid: data?.processid ?? 0,
+                                              psid: data?.ipdpsid,
+                                              ipdid: data?.ipdid,
+                                              attenceid: widget.attenceid,
+                                              attendceStatus:
+                                                  widget.attendceStatus,
+                                              pwsId: widget.pwsid,
+                                              workstationName:
+                                                  widget.workstationName,
+                                            ),
+                                          ));
+                                    },
+                                    icon: Icon(Icons.edit_sharp,
+                                        color: Color.fromARGB(255, 80, 96, 203))),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                    '${totime?.toString().substring(0, totime.toString().length - 7)}',
+                                    style: TextStyle(
+                                        fontFamily: "lexend",
+                                        fontSize: 15.sp,
+                                        color: Colors.black54)),
+                                if (index == 0)
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      SizedBox(
+                                        height: 40,
+                                        child: IconButton(
+                                          onPressed: () async {
+                                            // updateproduction(widget.processid);
+                                            deletePop(context, data?.ipdid ?? 0,
+                                                data?.ipdpsid ?? 0);
+                                          },
+                                          icon: SvgPicture.asset(
+                                            'assets/svg/trash.svg',
+                                            color: Colors.red,
+                                            width: 30,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                if (index != 0)
+                                  SizedBox(height: 30, child: Text("")),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),

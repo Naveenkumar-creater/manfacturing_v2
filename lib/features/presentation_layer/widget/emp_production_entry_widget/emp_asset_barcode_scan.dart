@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:prominous/constant/show_pop_error.dart';
 import 'package:prominous/features/presentation_layer/api_services/asset_barcode_di.dart';
 import 'package:prominous/features/presentation_layer/provider/asset_barcode_provier.dart';
-import 'package:prominous/features/presentation_layer/widget/emp_production_entry_widget/emp_production_entry.dart';
+
 
 
 class ScanBarcode extends StatefulWidget {

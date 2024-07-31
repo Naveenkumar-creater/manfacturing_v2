@@ -119,7 +119,7 @@ print(employeeResponse);
           width: 400,
           height: 400,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(5.r),
             color: Colors.white,
           ),
           child: Center(
@@ -410,104 +410,108 @@ print(employeeResponse);
 
     //  int? achivedProduct=;
 
-    return Container(
-    width: 506.w,
-    height: 86.h,
-      decoration: BoxDecoration(
-         color: Color.fromARGB(150, 235, 236, 255), 
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          StreamBuilder<String>(
-            stream: current,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return Text(
-                  '${snapshot.data}',
-                  style: TextStyle(
-                 color: Colors.black87,fontFamily: "Lexend",fontSize: 20.sp)
-                );
-              } else
-                return Text(
-                  'Loading',
-                  style: TextStyle(fontSize: 18.sp, color: Colors.black54),
-                );
-            },
-          ),
-          SizedBox(
-            width: 8.w,
-          ),
-          ShiftStatus == 1
-              ? Text('Shift ID:${Shiftid}',
-                  style: TextStyle(color: Colors.black87,fontFamily: "Lexend",fontSize: 22.sp))
-              : Text('No Shift',
-                  style: TextStyle(color: Colors.black87,fontFamily: "Lexend",fontSize: 22.sp)),
-          SizedBox(
-            width: 8.w,
-          ),
-          ShiftStatus == 1
-              ? ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.green),
-                    foregroundColor:
-                        MaterialStateProperty.all<Color>(Colors.white),
-                  ),
-                  onPressed: () {
-                    closeShiftPop(context);
-                  },
-                  child: Text('Close Shift'))
-
-: ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.red),
-                    foregroundColor:
-                        MaterialStateProperty.all<Color>(Colors.white),
-                  ),
-                  onPressed: () async {
-                    setState(() {
-                      isLoading = true; // Indicate loading
-                    });
-
-                    try {
-                      // Perform all asynchronous operations
-                      await openShift();
-                      await shiftStatusService.getShiftStatus(
-                          context: context,
-                          deptid: widget.deptid,
-                          processid: widget.processid);
-                      await employeeApiService.employeeList(
-                          context: context,
-                          deptid: widget.deptid ?? 1,
-                          processid: widget.processid ?? 0,
-                          psid: widget.psid ?? 0);
- await listofworkstationService.getListofWorkstation(context: context, deptid: widget.deptid ?? 1057, psid: widget.psid ?? 0, processid: widget.processid ?? 0);
-                          
-                      await attendanceCountService.getAttCount(
-                                      context: context,
-                                      id: widget.processid ?? 0, deptid:widget.deptid ?? 1 , psid: widget.psid ?? 0);
-                                       await planQtyService.getPlanQty(context: context, id: widget.processid ??0, psid: widget.psid ??0 );
-      await actualQtyService.getActualQty(context: context, id: widget.processid??0,psid: widget.psid ??0);
-
-
-
-                    } catch (e) {
-                      // Handle any errors that occur during the async operations
-                      print('Error: $e');
-                    } finally {
+    return Material(
+        elevation: 3,
+        borderRadius: BorderRadius.circular(5.r),
+      child: Container(
+      width: 506.w,
+      height: 86.h,
+        decoration: BoxDecoration(
+           color: Color.fromARGB(150, 235, 236, 255), 
+       
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            StreamBuilder<String>(
+              stream: current,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Text(
+                    '${snapshot.data}',
+                    style: TextStyle(
+                   color: Colors.black87,fontFamily: "Lexend",fontSize: 20.sp)
+                  );
+                } else
+                  return Text(
+                    'Loading',
+                    style: TextStyle(fontSize: 18.sp, color: Colors.black54),
+                  );
+              },
+            ),
+            SizedBox(
+              width: 8.w,
+            ),
+            ShiftStatus == 1
+                ? Text('Shift ID:${Shiftid}',
+                    style: TextStyle(color: Colors.black87,fontFamily: "Lexend",fontSize: 22.sp))
+                : Text('No Shift',
+                    style: TextStyle(color: Colors.black87,fontFamily: "Lexend",fontSize: 22.sp)),
+            SizedBox(
+              width: 8.w,
+            ),
+            ShiftStatus == 1
+                ? ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.green),
+                      foregroundColor:
+                          MaterialStateProperty.all<Color>(Colors.white),
+                    ),
+                    onPressed: () {
+                      closeShiftPop(context);
+                    },
+                    child: Text('Close Shift'))
+      
+      : ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.red),
+                      foregroundColor:
+                          MaterialStateProperty.all<Color>(Colors.white),
+                    ),
+                    onPressed: () async {
                       setState(() {
-                        isLoading = false; // Indicate completion
-                        // Update any other state variables as needed
+                        isLoading = true; // Indicate loading
                       });
-                    }
-                  },
-                  child: Text('Open Shift'),
-                )
-        ],
+      
+                      try {
+                        // Perform all asynchronous operations
+                        await openShift();
+                        await shiftStatusService.getShiftStatus(
+                            context: context,
+                            deptid: widget.deptid,
+                            processid: widget.processid);
+                        await employeeApiService.employeeList(
+                            context: context,
+                            deptid: widget.deptid ?? 1,
+                            processid: widget.processid ?? 0,
+                            psid: widget.psid ?? 0);
+       await listofworkstationService.getListofWorkstation(context: context, deptid: widget.deptid ?? 1057, psid: widget.psid ?? 0, processid: widget.processid ?? 0);
+                            
+                        await attendanceCountService.getAttCount(
+                                        context: context,
+                                        id: widget.processid ?? 0, deptid:widget.deptid ?? 1 , psid: widget.psid ?? 0);
+                                         await planQtyService.getPlanQty(context: context, id: widget.processid ??0, psid: widget.psid ??0 );
+        await actualQtyService.getActualQty(context: context, id: widget.processid??0,psid: widget.psid ??0);
+      
+      
+      
+                      } catch (e) {
+                        // Handle any errors that occur during the async operations
+                        print('Error: $e');
+                      } finally {
+                        setState(() {
+                          isLoading = false; // Indicate completion
+                          // Update any other state variables as needed
+                        });
+                      }
+                    },
+                    child: Text('Open Shift'),
+                  )
+          ],
+        ),
       ),
     );
   }

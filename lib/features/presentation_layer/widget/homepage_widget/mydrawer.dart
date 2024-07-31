@@ -95,7 +95,7 @@ class _MyDrawerState extends State<MyDrawer> {
       height: 758.h,
       width: 252.w,
       child: Drawer(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
         backgroundColor: Color.fromARGB(150, 235, 236, 255),
         child: Column(
           children: [
@@ -165,7 +165,7 @@ class _MyDrawerState extends State<MyDrawer> {
               height: 450.h,
               child: Scrollbar(
                 controller: _scrollController,
-                radius: Radius.circular(8),
+                radius: Radius.circular(5.r),
                 thickness: 8,
                 thumbVisibility: true,
                 child: ListView.builder(

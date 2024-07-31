@@ -7,26 +7,26 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:prominous/constant/request_data_model/workstation_change_model.dart';
 import 'package:prominous/constant/utilities/customwidgets/custombutton.dart';
-import 'package:prominous/features/data/model/shift_status_model.dart';
+
 import 'package:prominous/features/presentation_layer/api_services/listofworkstation_di.dart';
 import 'package:prominous/features/presentation_layer/mobile_page/mobile%20widget/mob_production_entry.dart';
-import 'package:prominous/features/presentation_layer/mobile_page/mobile_emp_production_entry.dart';
+
 import 'package:prominous/features/presentation_layer/provider/listofworkstation_provider.dart';
-import 'package:prominous/features/presentation_layer/widget/emp_production_entry_widget/emp_close_shift_widget.dart';
+
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:prominous/constant/request_data_model/send_attendence_model.dart';
 import 'package:prominous/features/presentation_layer/api_services/attendace_count_di.dart';
 import 'package:prominous/features/presentation_layer/api_services/employee_di.dart';
 import 'package:prominous/features/presentation_layer/provider/shift_status_provider.dart';
-import 'package:toggle_switch/toggle_switch.dart';
-import '../../../constant/request_model.dart';
-import '../widget/emp_production_entry_widget/emp_production_entry.dart';
+
+
+
 import '../../../constant/show_pop_error.dart';
 import '../../data/core/api_constant.dart';
-import '../api_services/process_di.dart';
+
 import '../provider/employee_provider.dart';
-import '../widget/emp_production_entry_widget/emp_workstation_entry.dart';
+
 import '../widget/homepage_widget/employe_allocation_popup.dart';
 
 class EmployeeWorkStationMobile extends StatefulWidget {
@@ -652,342 +652,352 @@ class _EmployeeWorkStationMobileState extends State<EmployeeWorkStationMobile> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              width: 500.w,
-              height: 225.h,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: Color.fromARGB(150, 235, 236, 255),
-              ),
-              child: Column(
-                // crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: ListView.builder(
-                      padding: EdgeInsets.zero,
-                      itemCount: employeeResponse?.length ?? 0,
-                      itemBuilder: (context, index) {
-                        final employee = employeeResponse![index];
-                        DateTime now = DateTime.now();
-                        String today = DateFormat('yyyy-MM-dd').format(now);
-
-                        String? dt = employee.flattdate;
-                        int? shiftstatus = employee?.flattshiftstatus;
-                        initialindex = employee.flattstatus;
-
-                        String? flattDate =
-                            dt; // Parse dt to DateTime if not null
-
-                        String attdate =
-                            flattDate ?? ""; // Format flattDate if not null
-
-                        return Container(
-                          color: index % 2 == 0
-                              ? Color.fromARGB(250, 235, 236, 255)
-                              : Color.fromARGB(10, 235, 236, 255),
-                          child: ExpansionTile(
-                              shape: Border(bottom: BorderSide.none),
-                              childrenPadding: EdgeInsets.symmetric(
-                                  horizontal: 8.w, vertical: 8.h),
-                              title: Row(
-                                children: [
-                                  SizedBox(
-                                    width: 20.w,
-                                    child: Text('${index + 1}',
-                                        style: TextStyle(
-                                            color: Colors.grey.shade600,
-                                            fontFamily: "lexend",
-                                            fontSize: 14.sp)),
-                                  ),
-                                  SizedBox(
-                                    width: 5.w,
-                                  ),
-                                  SizedBox(
-                                    width: 150.w,
-                                    child: Text(
-                                        employee!.personFname![0]
-                                                    .toUpperCase() +
-                                                employee!.personFname!
-                                                    .substring(
-                                                        1,
-                                                        employee!.personFname!
-                                                                .length -
-                                                            1)
-                                                    .toLowerCase() +
-                                                employee!.personFname!
-                                                    .substring(employee!
-                                                            .personFname!
-                                                            .length -
-                                                        1)
-                                                    .toUpperCase() ??
-                                            '',
-                                        style: TextStyle(
-                                            color: Colors.grey.shade600,
-                                            fontFamily: "lexend",
-                                            fontSize: 14.sp)),
-                                  ),
-                                  SizedBox(
-                                    width: 8.w,
-                                  ),
-                                  if (initialindex == 0)
-                                    SizedBox(
-                                      width: 80.w,
-                                      child: Container(
-                                          alignment: Alignment.center,
-                                          width: 100.w,
-                                          child: CustomButton(
-                                            child: Text(
-                                              "Absent",
-                                              style: TextStyle(
-                                                  color: Colors.white,fontSize: 12.sp,fontFamily: "Lexend"),
-                                            ),
-                                            backgroundColor: Colors.red,
-                                            height: 30.h,
-                                            width: 80.w,
-                                            borderRadius:
-                                                BorderRadius.circular(50),
-                                            onPressed: (employee
-                                                        ?.pwsName?.isEmpty ??
-                                                    true)
-                                                ? null
-                                                : () async {
-                                                    await sendAttendance(
-                                                        1,
-                                                        employee?.attendanceid ??
-                                                            "",
-                                                        employee.empPersonid,
-                                                        employee.flattdate,
-                                                        employee.pwsId);
-
-                                                    await employeeApiService
-                                                        .employeeList(
-                                                            context: context,
-                                                            processid: employee
-                                                                    .processId ??
-                                                                0,
-                                                            deptid:
-                                                                widget.deptid ??
-                                                                    1,
-                                                            psid: widget.psid ??
-                                                                0);
-                                                    await listofworkstationService
-                                                        .getListofWorkstation(
-                                                            context: context,
-                                                            deptid:
-                                                                widget.deptid ??
-                                                                    1057,
-                                                            psid: widget.psid ??
-                                                                0,
-                                                            processid: employee
-                                                                    .processId ??
-                                                                0);
-
-                                                    await attendanceCountService
-                                                        .getAttCount(
-                                                            context: context,
-                                                            id: employee
-                                                                    .processId ??
-                                                                0,
-                                                            deptid:
-                                                                widget.deptid,
-                                                            psid: widget.psid ??
-                                                                0);
-                                                  },
-                                          )),
-                                    )
-                                  else if (initialindex == 1)
-                                    SizedBox(
-                                      width: 80.w,
-                                      child: Container(
-                                          alignment: Alignment.center,
-                                          width: 80.w,
-                                          child: CustomButton(
-                                            child: Text(
-                                              "Present",
-                                              style: TextStyle(
-                                                  color: Colors.white,fontSize: 12.sp,fontFamily: "Lexend"),
-                                            ),
-                                            backgroundColor: Colors.green,
-                                            height: 30.h,
-                                            width: 80.w,
-                                            borderRadius:
-                                                BorderRadius.circular(50),
-                                            onPressed: (employee
-                                                        ?.pwsName?.isEmpty ??
-                                                    true)
-                                                ? null
-                                                : () async {
-                                                    await sendAttendance(
-                                                        0,
-                                                        employee?.attendanceid ??
-                                                            "",
-                                                        employee.empPersonid,
-                                                        employee.flattdate,
-                                                        employee.pwsId);
-
-                                                    await employeeApiService
-                                                        .employeeList(
-                                                            context: context,
-                                                            processid: employee
-                                                                    .processId ??
-                                                                0,
-                                                            deptid:
-                                                                widget.deptid ??
-                                                                    1,
-                                                            psid: widget.psid ??
-                                                                0);
-                                                    await listofworkstationService
-                                                        .getListofWorkstation(
-                                                            context: context,
-                                                            deptid:
-                                                                widget.deptid ??
-                                                                    1057,
-                                                            psid: widget.psid ??
-                                                                0,
-                                                            processid: employee
-                                                                    .processId ??
-                                                                0);
-
-                                                    await attendanceCountService
-                                                        .getAttCount(
-                                                            context: context,
-                                                            id: employee
-                                                                    .processId ??
-                                                                0,
-                                                            deptid:
-                                                                widget.deptid,
-                                                            psid: widget.psid ??
-                                                                0);
-                                                  },
-                                          )),
-                                    ),
-                                ],
-                              ),
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
+         Material(
+        
+        elevation: 3,
+        borderRadius: BorderRadius.circular(5.r),
+              child: Container(
+                width: 500.w,
+                height: 225.h,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: Color.fromARGB(150, 235, 236, 255),
+                ),
+                child: Column(
+                  // crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: ListView.builder(
+                        padding: EdgeInsets.zero,
+                        itemCount: employeeResponse?.length ?? 0,
+                        itemBuilder: (context, index) {
+                          final employee = employeeResponse![index];
+                          DateTime now = DateTime.now();
+                          String today = DateFormat('yyyy-MM-dd').format(now);
+              
+                          String? dt = employee.flattdate;
+                          int? shiftstatus = employee?.flattshiftstatus;
+                          initialindex = employee.flattstatus;
+              
+                          String? flattDate =
+                              dt; // Parse dt to DateTime if not null
+              
+                          String attdate =
+                              flattDate ?? ""; // Format flattDate if not null
+              
+                          return Container(
+                            color: index % 2 == 0
+                                ? Color.fromARGB(250, 235, 236, 255)
+                                : Color.fromARGB(10, 235, 236, 255),
+                            child: ExpansionTile(
+                                shape: Border(bottom: BorderSide.none),
+                                childrenPadding: EdgeInsets.symmetric(
+                                    horizontal: 8.w, vertical: 8.h),
+                                title: Row(
                                   children: [
                                     SizedBox(
-                                      width: 120.w,
-                                      child: ElevatedButton(
-                                          onPressed: () {
-                                            //  showAnimatedDialog(context);
-
-                                            _workstationPopup(
-                                              empPersonid: employee.empPersonid,
-                                              processId: employee.processId,
-                                              pwseId: employee.pwseid,
-                                              attid: int.tryParse(employee
-                                                              .attendanceid
-                                                              ?.isEmpty ??
-                                                          true
-                                                      ? '0'
-                                                      : employee.attendanceid ??
-                                                          '0') ??
-                                                  0,
-                                              attStatus: initialindex ?? 0,
-                                            );
-                                          },
-                                          child: Text(
-                                            (employee?.pwsName?.isEmpty ??
-                                                    true)
-                                                ? "Select_WS"
-                                                : employee!.pwsName!,
-                                            style: TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 80, 96, 203),
+                                      width: 20.w,
+                                      child: Text('${index + 1}',
+                                          style: TextStyle(
+                                              color: Colors.grey.shade600,
                                               fontFamily: "lexend",
-                                              fontSize: 12.sp,
-                                            ),
-                                          )),
+                                              fontSize: 14.sp)),
                                     ),
-                                    Container(
-                                      alignment: Alignment.center,
-                                      width: 100.w,
-                                      child: ElevatedButton(
-                                        child: Text(
-                                          "Reassign",
-                                          style: TextStyle(fontSize: 12.sp),
-                                        ),
-                                        onPressed: initialindex == 0
-                                            ? null
-                                            : () {
-                                                setState(() {
-                                                  showEmployeeAllocationPopup(
-                                                    attId:
-                                                        employee.attendanceid,
-                                                    deptid:
-                                                        widget.deptid ?? 0,
-                                                    empPersonid:
-                                                        employee.empPersonid,
-                                                    mfgpeId:
-                                                        employee.mfgpempid,
-                                    
-                                                    processId:
-                                                        employee.processId,
-                                    
-                                                    // widget?.shiftid ??0,
-                                                  );
-                                                  employeeApiService
-                                                      .employeeList(
-                                                          context: context,
-                                                          processid: employee
-                                                                  .processId ??
-                                                              0,
-                                                          deptid: widget
-                                                                  .deptid ??
-                                                              1,
-                                                          psid: widget.psid ??
-                                                              0);
-                                                });
-                                              },
+                                    SizedBox(
+                                      width: 5.w,
+                                    ),
+                                    SizedBox(
+                                      width: 150.w,
+                                      child: Text(
+                                          employee!.personFname![0]
+                                                      .toUpperCase() +
+                                                  employee!.personFname!
+                                                      .substring(
+                                                          1,
+                                                          employee!.personFname!
+                                                                  .length -
+                                                              1)
+                                                      .toLowerCase() +
+                                                  employee!.personFname!
+                                                      .substring(employee!
+                                                              .personFname!
+                                                              .length -
+                                                          1)
+                                                      .toUpperCase() ??
+                                              '',
+                                          style: TextStyle(
+                                              color: Colors.grey.shade600,
+                                              fontFamily: "lexend",
+                                              fontSize: 14.sp)),
+                                    ),
+                                    SizedBox(
+                                      width: 8.w,
+                                    ),
+                                    if (initialindex == 0)
+                                      SizedBox(
+                                        width: 80.w,
+                                        child: Container(
+                                            alignment: Alignment.center,
+                                            width: 100.w,
+                                            child: CustomButton(
+                                              child: Text(
+                                                "Absent",
+                                                style: TextStyle(
+                                                    color: Colors.white,fontSize: 12.sp,fontFamily: "Lexend"),
+                                              ),
+                                              backgroundColor: Colors.red,
+                                              height: 30.h,
+                                              width: 80.w,
+                                              borderRadius:
+                                                  BorderRadius.circular(50),
+                                              onPressed: (employee
+                                                          ?.pwsName?.isEmpty ??
+                                                      true)
+                                                  ? null
+                                                  : () async {
+                                                      await sendAttendance(
+                                                          1,
+                                                          employee?.attendanceid ??
+                                                              "",
+                                                          employee.empPersonid,
+                                                          employee.flattdate,
+                                                          employee.pwsId);
+              
+                                                      await employeeApiService
+                                                          .employeeList(
+                                                              context: context,
+                                                              processid: employee
+                                                                      .processId ??
+                                                                  0,
+                                                              deptid:
+                                                                  widget.deptid ??
+                                                                      1,
+                                                              psid: widget.psid ??
+                                                                  0);
+                                                      await listofworkstationService
+                                                          .getListofWorkstation(
+                                                              context: context,
+                                                              deptid:
+                                                                  widget.deptid ??
+                                                                      1057,
+                                                              psid: widget.psid ??
+                                                                  0,
+                                                              processid: employee
+                                                                      .processId ??
+                                                                  0);
+              
+                                                      await attendanceCountService
+                                                          .getAttCount(
+                                                              context: context,
+                                                              id: employee
+                                                                      .processId ??
+                                                                  0,
+                                                              deptid:
+                                                                  widget.deptid,
+                                                              psid: widget.psid ??
+                                                                  0);
+                                                    },
+                                            )),
+                                      )
+                                    else if (initialindex == 1)
+                                      SizedBox(
+                                        width: 80.w,
+                                        child: Container(
+                                            alignment: Alignment.center,
+                                            width: 80.w,
+                                            child: CustomButton(
+                                              child: Text(
+                                                "Present",
+                                                style: TextStyle(
+                                                    color: Colors.white,fontSize: 12.sp,fontFamily: "Lexend"),
+                                              ),
+                                              backgroundColor: Colors.green,
+                                              height: 30.h,
+                                              width: 80.w,
+                                              borderRadius:
+                                                  BorderRadius.circular(50),
+                                              onPressed: (employee
+                                                          ?.pwsName?.isEmpty ??
+                                                      true)
+                                                  ? null
+                                                  : () async {
+                                                      await sendAttendance(
+                                                          0,
+                                                          employee?.attendanceid ??
+                                                              "",
+                                                          employee.empPersonid,
+                                                          employee.flattdate,
+                                                          employee.pwsId);
+              
+                                                      await employeeApiService
+                                                          .employeeList(
+                                                              context: context,
+                                                              processid: employee
+                                                                      .processId ??
+                                                                  0,
+                                                              deptid:
+                                                                  widget.deptid ??
+                                                                      1,
+                                                              psid: widget.psid ??
+                                                                  0);
+                                                      await listofworkstationService
+                                                          .getListofWorkstation(
+                                                              context: context,
+                                                              deptid:
+                                                                  widget.deptid ??
+                                                                      1057,
+                                                              psid: widget.psid ??
+                                                                  0,
+                                                              processid: employee
+                                                                      .processId ??
+                                                                  0);
+              
+                                                      await attendanceCountService
+                                                          .getAttCount(
+                                                              context: context,
+                                                              id: employee
+                                                                      .processId ??
+                                                                  0,
+                                                              deptid:
+                                                                  widget.deptid,
+                                                              psid: widget.psid ??
+                                                                  0);
+                                                    },
+                                            )),
                                       ),
-                                    ),
                                   ],
                                 ),
-                              ]),
-                        );
-                      },
-                    ),
-                  )
-                ],
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      SizedBox(
+                                        width: 120.w,
+                                        child: ElevatedButton(
+                                            onPressed: () {
+                                              //  showAnimatedDialog(context);
+              
+                                              _workstationPopup(
+                                                empPersonid: employee.empPersonid,
+                                                processId: employee.processId,
+                                                pwseId: employee.pwseid,
+                                                attid: int.tryParse(employee
+                                                                .attendanceid
+                                                                ?.isEmpty ??
+                                                            true
+                                                        ? '0'
+                                                        : employee.attendanceid ??
+                                                            '0') ??
+                                                    0,
+                                                attStatus: initialindex ?? 0,
+                                              );
+                                            },
+                                            child: Text(
+                                              (employee?.pwsName?.isEmpty ??
+                                                      true)
+                                                  ? "Select_WS"
+                                                  : employee!.pwsName!,
+                                              style: TextStyle(
+                                                color: Color.fromARGB(
+                                                    255, 80, 96, 203),
+                                                fontFamily: "lexend",
+                                                fontSize: 12.sp,
+                                              ),
+                                            )),
+                                      ),
+                                      Container(
+                                        alignment: Alignment.center,
+                                        width: 100.w,
+                                        child: ElevatedButton(
+                                          child: Text(
+                                            "Reassign",
+                                            style: TextStyle(fontSize: 12.sp),
+                                          ),
+                                          onPressed: initialindex == 0
+                                              ? null
+                                              : () {
+                                                  setState(() {
+                                                    showEmployeeAllocationPopup(
+                                                      attId:
+                                                          employee.attendanceid,
+                                                      deptid:
+                                                          widget.deptid ?? 0,
+                                                      empPersonid:
+                                                          employee.empPersonid,
+                                                      mfgpeId:
+                                                          employee.mfgpempid,
+                                      
+                                                      processId:
+                                                          employee.processId,
+                                      
+                                                      // widget?.shiftid ??0,
+                                                    );
+                                                    employeeApiService
+                                                        .employeeList(
+                                                            context: context,
+                                                            processid: employee
+                                                                    .processId ??
+                                                                0,
+                                                            deptid: widget
+                                                                    .deptid ??
+                                                                1,
+                                                            psid: widget.psid ??
+                                                                0);
+                                                  });
+                                                },
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ]),
+                          );
+                        },
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
             SizedBox(
               height: 8.h,
             ),
-            Container(
-              height: 60.h,
-              decoration: BoxDecoration(
-                  color: Color.fromARGB(150, 235, 236, 255),
-                  borderRadius: BorderRadius.circular(5)),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Workstation",
-                        style: TextStyle(
-                            fontSize: 16.sp,
-                            color: Colors.black54,
-                            fontFamily: "Lexend")),
-                    CustomButton(
-                        width: 100.w,
-                        height: 35.h,
-                        borderRadius: BorderRadius.circular(50),
-                        backgroundColor: Colors.green,
-                        onPressed: () {
-                          _openWorkstationBottomSheet(process_id);
-                        },
-                        child: Text(
-                          "View",
+          Material(
+        
+        elevation: 3,
+        borderRadius: BorderRadius.circular(5.r),
+              child: Container(
+                height: 60.h,
+                decoration: BoxDecoration(
+                    color: Color.fromARGB(150, 235, 236, 255),
+                    borderRadius: BorderRadius.circular(5)),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Workstation",
                           style: TextStyle(
-                              fontFamily: "Lexend",
-                              color: Colors.white,
-                              fontSize: 12.sp),
-                        ))
-                  ],
+                              fontSize: 16.sp,
+                              color: Colors.black54,
+                              fontFamily: "Lexend")),
+                      CustomButton(
+                          width: 100.w,
+                          height: 35.h,
+                          borderRadius: BorderRadius.circular(50),
+                          backgroundColor: Colors.green,
+                          onPressed: () {
+                            _openWorkstationBottomSheet(process_id);
+                          },
+                          child: Text(
+                            "View",
+                            style: TextStyle(
+                                fontFamily: "Lexend",
+                                color: Colors.white,
+                                fontSize: 12.sp),
+                          ))
+                    ],
+                  ),
                 ),
               ),
             ),

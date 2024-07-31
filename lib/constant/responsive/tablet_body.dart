@@ -88,7 +88,7 @@ class _ResponsiveTabletHomepageState extends State<ResponsiveTabletHomepage> {
         ? Provider.of<EmployeeProvider>(context, listen: true).user?.listofEmployeeEntity?.first.processId ?? 1
         : 1;
 
-    final deptid = user?.listofProcessEntity?.first.deptId ?? 1057;
+    // final deptid = user?.listofProcessEntity?.first.deptId ?? 1057;
     final shiftgroupId = user?.listofProcessEntity?.first.shiftgroupId ?? 1;
 
     final totalemployee = Provider.of<AttendanceCountProvider>(context, listen: true).user?.attendanceEntity?.totalEmployees;
@@ -123,7 +123,7 @@ class _ResponsiveTabletHomepageState extends State<ResponsiveTabletHomepage> {
                             height: 758.h,
                             width: 1020.w,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
+                              borderRadius: BorderRadius.circular(5.r),
                               color: Colors.white,
                             ),
                             child: Column(
@@ -138,94 +138,107 @@ class _ResponsiveTabletHomepageState extends State<ResponsiveTabletHomepage> {
                                           children: [
                                             Row(
                                               children: [
+
                                                 Expanded(
-                                                  child: Container(
-                                                    width: 245.w,
-                                                    height: 86.h,
-                                                    decoration: BoxDecoration(
-                                                      color: Color.fromARGB(150, 235, 236, 255),
-                                                      borderRadius: BorderRadius.circular(8.w),
-                                                    ),
-                                                    child: Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                                      mainAxisAlignment: MainAxisAlignment.center,
-                                                      children: [
-                                                        Text(
-                                                          processname,
-                                                          style: TextStyle(
-                                                              fontSize: 22.sp,
-                                                              fontFamily: "Lexend",
-                                                              color: Color.fromARGB(255, 80, 96, 203)),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                                SizedBox(width: 8.w),
-                                                Expanded(
-                                                  child: Container(
-                                                    width: 245.w,
-                                                    height: 86.h,
-                                                    decoration: BoxDecoration(
-                                                      color: Color.fromARGB(150, 235, 236, 255),
-                                                      borderRadius: BorderRadius.circular(8.w),
-                                                    ),
-                                                    child: Row(
-                                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                      children: [
-                                                        Row(
-                                                          children: [
-                                                            Text(
-                                                              "Attendance",
-                                                              style: TextStyle(
-                                                                  color: Colors.black87,
-                                                                  fontFamily: "Lexend",
-                                                                  fontSize: 22.sp),
-                                                            ),
-                                                            SizedBox(width: 8.w),
-                                                            Text(
-                                                              "${presentees == null ? 0 : presentees}",
-                                                              style: TextStyle(
+                                                  child:  Material(
+                                                      elevation: 3,
+        borderRadius: BorderRadius.circular(5.r),
+                                                    child: Container(
+                                                      width: 245.w,
+                                                      height: 86.h,
+                                                      decoration: BoxDecoration(
+                                                        color: Color.fromARGB(150, 235, 236, 255),
+                                                           borderRadius: BorderRadius.circular(5.r),
+                                                       
+                                                      ),
+                                                      child: Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Text(
+                                                            processname,
+                                                            style: TextStyle(
+                                                                fontSize: 22.sp,
                                                                 fontFamily: "Lexend",
-                                                                color: Colors.deepPurple,
-                                                                fontSize: 18.sp,
-                                                              ),
-                                                            ),
-                                                            Text(
-                                                              "/",
-                                                              style: TextStyle(
-                                                                  fontFamily: "Lexend",
-                                                                  color: Color.fromARGB(255, 179, 157, 219),
-                                                                  fontSize: 18.sp),
-                                                            ),
-                                                            Text(
-                                                              "${totalemployee == null ? 0 : totalemployee}",
-                                                              style: TextStyle(
-                                                                  fontFamily: "Lexend",
-                                                                  color: Color.fromARGB(255, 179, 157, 219),
-                                                                  fontSize: 18.sp),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ],
+                                                                color: Color.fromARGB(255, 80, 96, 203)),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
-                                                SizedBox(width: 8.w),
-                                                ShitStatusWidget(deptid: deptid, processid: processId, shiftgroupid: shiftgroupId, psid: psId),
+                                                
+                                                SizedBox(width: 10.w),
+                                                Expanded(
+                                                  child:  Material(
+        
+        elevation: 3,
+        borderRadius: BorderRadius.circular(5.r),
+                                                    child: Container(
+                                                      width: 245.w,
+                                                      height: 86.h,
+                                                      decoration: BoxDecoration(
+                                                        color: Color.fromARGB(150, 235, 236, 255),
+                                                        borderRadius: BorderRadius.circular(5.r),
+                                                      ),
+                                                      child: Row(
+                                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                        children: [
+                                                          Row(
+                                                            children: [
+                                                              Text(
+                                                                "Attendance",
+                                                                style: TextStyle(
+                                                                    color: Colors.black87,
+                                                                    fontFamily: "Lexend",
+                                                                    fontSize: 22.sp),
+                                                              ),
+                                                              SizedBox(width: 8.w),
+                                                              Text(
+                                                                "${presentees == null ? 0 : presentees}",
+                                                                style: TextStyle(
+                                                                  fontFamily: "Lexend",
+                                                                  color: Colors.deepPurple,
+                                                                  fontSize: 18.sp,
+                                                                ),
+                                                              ),
+                                                              Text(
+                                                                "/",
+                                                                style: TextStyle(
+                                                                    fontFamily: "Lexend",
+                                                                    color: Color.fromARGB(255, 179, 157, 219),
+                                                                    fontSize: 18.sp),
+                                                              ),
+                                                              Text(
+                                                                "${totalemployee == null ? 0 : totalemployee}",
+                                                                style: TextStyle(
+                                                                    fontFamily: "Lexend",
+                                                                    color: Color.fromARGB(255, 179, 157, 219),
+                                                                    fontSize: 18.sp),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                
+                                                SizedBox(width: 10.w),
+                                                ShitStatusWidget(deptid: deptId ?? 1057, processid: processId, shiftgroupid: shiftgroupId, psid: psId),
                                               ],
                                             ),
-                                            SizedBox(height: 4.h),
+                                            SizedBox(height: 8.h),
                                             ProcessQtyWidget(id: processId, psid: psId),
                                           ],
                                         ),
                                       ),
                                     ],
                                   ),
-                                SizedBox(height: 4.h),
+                                SizedBox(height: 8.h),
                                 processname != "Default" && shiftstatus != 0
-                                    ? EmployeeWorkStation(deptid: deptid, psid: psId)
+                                    ? EmployeeWorkStation(deptid: deptId ?? 1057, psid: psId)
                                     : SizedBox(), // Or any other fallback widget
                               ],
                             ),

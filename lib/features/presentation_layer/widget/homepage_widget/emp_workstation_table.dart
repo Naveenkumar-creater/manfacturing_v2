@@ -19,7 +19,7 @@ import 'package:prominous/features/presentation_layer/api_services/employee_di.d
 import 'package:prominous/features/presentation_layer/provider/shift_status_provider.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import '../../../../constant/request_model.dart';
-import '../emp_production_entry_widget/emp_production_entry.dart';
+
 import '../../../../constant/show_pop_error.dart';
 import '../../../data/core/api_constant.dart';
 import '../../api_services/process_di.dart';
@@ -596,10 +596,10 @@ class _EmployeeWorkStationState extends State<EmployeeWorkStation> {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(8),
-              topRight: Radius.circular(8),
-              bottomLeft: Radius.circular(8),
-              bottomRight: Radius.circular(8)),
+              topLeft: Radius.circular(5.r),
+              topRight: Radius.circular(5.r),
+              bottomLeft: Radius.circular(5.r),
+              bottomRight: Radius.circular(5.r)),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -611,10 +611,10 @@ class _EmployeeWorkStationState extends State<EmployeeWorkStation> {
               decoration: BoxDecoration(
                 color: Color.fromARGB(150, 235, 236, 255),
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(8),
-                    topRight: Radius.circular(8),
-                    bottomLeft: Radius.circular(8),
-                    bottomRight: Radius.circular(8)),
+                    topLeft: Radius.circular(5.r),
+                    topRight: Radius.circular(5.r),
+                    bottomLeft: Radius.circular(5.r),
+                    bottomRight: Radius.circular(5.r)),
               ),
               width: 498.w,
               height: 500.h,
@@ -627,8 +627,8 @@ class _EmployeeWorkStationState extends State<EmployeeWorkStation> {
                       width: 506.w,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(8),
-                            topRight: Radius.circular(8)),
+                            topLeft: Radius.circular(5.r),
+                            topRight: Radius.circular(5.r)),
                         color: Color.fromARGB(255, 45, 54, 104),
                       ),
                       child: Row(
@@ -789,124 +789,7 @@ class _EmployeeWorkStationState extends State<EmployeeWorkStation> {
                                             fontSize: 14.sp))),
                               ),
 
-                              //   Padding(
-                              //   padding: const EdgeInsets.all(8.0),
-                              //   child: Container(
-                              //       alignment: Alignment.center,
-                              //       width: 120,
-                              //       child: Text("",
-                              //           style: TextStyle(
-                              //               color: Colors.grey.shade600,
-                              //               fontSize: 12))),
-                              // ),
-                              // Padding(
-                              //   padding: const EdgeInsets.all(8.0),
-                              //   child: Container(
-                              //       alignment: Alignment.center,
-                              //       width: 120,
-                              //       child: Text(employee?.productName ?? '',
-                              //           style: TextStyle(
-                              //               color: Colors.grey.shade600,
-                              //               fontSize: 12))),
-                              // ),
-                              // Padding(
-                              //   padding: const EdgeInsets.all(8.0),
-                              //   child: Container(
-                              //       alignment: Alignment.center,
-                              //       width: 100,
-                              //       child: Padding(
-                              //         padding: const EdgeInsets.only(left: 15),
-                              //         child: Text(employee.timing.toString(),
-                              //             style: TextStyle(
-                              //                 color: Colors.grey.shade600,
-                              //                 fontSize: 12)),
-                              //       )),
-                              // ),
-                              // Padding(
-                              //   padding: const EdgeInsets.all(8.0),
-                              //   child: Container(
-                              //     width: 120,
-                              //     alignment: Alignment.center,
-                              //     child: Text(employee.productQty.toString() ?? "",
-                              //         style: TextStyle(
-                              //             color: Colors.grey.shade600,
-                              //             fontSize: 12)),
-                              //   ),
-                              // ),
-                              // Padding(
-                              //   padding: const EdgeInsets.all(8.0),
-                              //   child: Container(
-                              //     alignment: Alignment.center,
-                              //     width: 110,
-                              //     child: ToggleSwitch(
-                              //       minWidth: 40.0,
-                              //       cornerRadius: 20.0,
-                              //       activeBgColors: [
-                              //         [Colors.red[800]!],
-                              //         [Colors.green[800]!]
-                              //       ],
-                              //       activeFgColor: Colors.white,
-                              //       inactiveBgColor: Colors.grey,
-                              //       initialLabelIndex: initialindex,
-                              //       totalSwitches: 2,
-                              //       labels: ['A', 'P'],
-                              //       radiusStyle: true,
-                              //       onToggle: (index) async {
-                              //         await sendAttendance(
-                              //           index,
-                              //           employee?.attendanceid ?? "",
-                              //           employee.empPersonid,
-                              //           employee.flattdate,
-                              //         );
-                              //         print('switched to: $index');
-
-                              //         employeeApiService.employeeList(
-                              //             context: context,
-                              //             processid: employee.processId ?? 0,
-                              //             deptid: widget.deptid ?? 1,
-                              //             psid: widget.psid ?? 0);
-
-                              //         attendanceCountService.getAttCount(
-                              //             context: context,
-                              //             id: employee.processId ?? 0,
-                              //             deptid: widget.deptid,
-                              //             psid: widget.psid ?? 0);
-                              //       },
-                              //     ),
-                              //   ),
-                              // ),
-                              // Padding(
-                              //   padding: const EdgeInsets.only(left: 16.0),
-                              //   child: Container(
-                              //     alignment: Alignment.center,
-                              //     width: 120,
-                              //     child: ElevatedButton(
-                              //       child: Text("Change"),
-                              //       onPressed: initialindex ==
-                              //               0 // Disable the button if toggle label is "A"
-                              //           ? null
-                              //           : () {
-                              //               setState(() {
-                              //                 showEmployeeAllocationPopup(
-                              //                     employee.empPersonid,
-                              //                     employee.mfgpempid,
-                              //                     employee.processId,
-                              //                     widget.deptid ?? 0
-
-                              //                     // widget?.shiftid ??0,
-
-                              //                     );
-                              //                 employeeApiService.employeeList(
-                              //                     context: context,
-                              //                     processid:
-                              //                         employee.processId ?? 0,
-                              //                     deptid: widget.deptid ?? 1,
-                              //                     psid: widget.psid ?? 0);
-                              //               });
-                              //             },
-                              //     ),
-                              //   ),
-                              // ),
+                            
                               if (listWorkstation.noOfStaff != 0)
                                 Padding(
                                   padding: EdgeInsets.symmetric(
@@ -972,45 +855,7 @@ class _EmployeeWorkStationState extends State<EmployeeWorkStation> {
                                                 fontSize: 14.sp)),
                                       )),
                                 )
-                              // else if (shiftstatus == 2)
-                              // Padding(
-                              //   padding: const EdgeInsets.all(8.0),
-                              //   child: Container(
-                              //      width: 120,
-                              //     child: Padding(
-                              //       padding: const EdgeInsets.all(8.0),
-                              //       child: ElevatedButton(
-                              //         onPressed: initialindex == 0
-                              //             ? null
-                              //             : () {
-                              //                 final employeeProvider =
-                              //                     Provider.of<EmployeeProvider>(context,
-                              //                         listen: false);
-
-                              //                 // Get the employee ID of the current employee
-                              //                 final employeeId =
-                              //                     employeeResponse[index].empPersonid;
-
-                              //                 // Update the employee ID in the provider
-                              //                 employeeProvider
-                              //                     .updateEmployeeId(employeeId!);
-                              //                 print(shiftstatus);
-
-                              //                 _closeShiftPop(
-                              //                     context,
-                              //                     employee.attendanceid ?? "",
-                              //                     employee.flattstatus ?? 0,
-                              //                     employee.empPersonid ?? 0,
-                              //                     employee.processId ?? 0);
-
-                              //                 // Navigate to the ProductionQuantityPage
-                              //               },
-                              //         child: Text("Reopen",
-                              //             style: TextStyle(color: Colors.red)),
-                              //       ),
-                              //     ),
-                              //   ),
-                              // )
+                          
                             ],
                           ),
                         );
@@ -1029,10 +874,11 @@ class _EmployeeWorkStationState extends State<EmployeeWorkStation> {
               height: 758.h,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(8),
-                    topRight: Radius.circular(8),
-                    bottomLeft: Radius.circular(8),
-                    bottomRight: Radius.circular(8)),
+                    topLeft: Radius.circular(5.r),
+                    topRight: Radius.circular(5.r),
+                    bottomLeft: Radius.circular(5.r),
+                  
+                    bottomRight: Radius.circular(5.r)),
                 color: Color(0x96EBECFF),
               ),
               child: Column(
@@ -1043,8 +889,8 @@ class _EmployeeWorkStationState extends State<EmployeeWorkStation> {
                       width: 506.w,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(8),
-                            topRight: Radius.circular(8)),
+                            topLeft: Radius.circular(5.r),
+                            topRight: Radius.circular(5.r)),
                         color: Color.fromARGB(255, 45, 54, 104),
                       ),
                       child: Row(

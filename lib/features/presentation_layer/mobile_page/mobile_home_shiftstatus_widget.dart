@@ -396,154 +396,152 @@ class _ProcessQtyWidgetState extends State<MobileShitStatusWidget> {
 
     //  int? achivedProduct=;
 
-    return Padding(
-      padding:  EdgeInsets.only(left: 8.w,right: 8.w),
-      child: Container(
-        height: 100.h, 
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color:Color.fromARGB(150, 235, 236, 255),
-          borderRadius: BorderRadius.circular(5.r),
-          border: Border.all(width: 1.w,color: Colors.grey.shade100),
-         
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      "Attendance",
-                      style: TextStyle(color: Colors.black87, fontSize: 16.sp,fontFamily: 'Lexend',),
-                    ),
-                    SizedBox(
-                      width: 8.w,
-                    ),
-                    Text(
-                      "${presentees}",
+    return Container(
+      
+      height: 100.h, 
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color:Color.fromARGB(150, 235, 236, 255),
+        borderRadius: BorderRadius.circular(5.r),
+        border: Border.all(width: 1.w,color: Colors.grey.shade100),
+       
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    "Attendance",
+                    style: TextStyle(color: Colors.black87, fontSize: 16.sp,fontFamily: 'Lexend',),
+                  ),
+                  SizedBox(
+                    width: 8.w,
+                  ),
+                  Text(
+                    "${presentees}",
+                    style: TextStyle(fontFamily: 'Lexend',
+                       color:  Color.fromARGB(255, 80, 96, 203), fontSize: 18.sp,
+                        fontWeight: FontWeight.w600,
+                        ),
+                  ),
+                  Text(
+                    "/",
+                    style: TextStyle(fontFamily: 'Lexend',
+                       color:  Color.fromARGB(255, 80, 96, 203), fontSize: 16.sp,),
+                  ),
+                  Text(
+                    "${totalemployee}",
+                    style: TextStyle(fontFamily: 'Lexend',
+                        color:  Color.fromARGB(255, 80, 96, 203), fontSize: 18.sp,),
+                  ),
+                  SizedBox(width: 50.w,),  
+                   ShiftStatus == 1
+                  ? Row(
+                    children: [
+                      Text('Shift Id:',
+                          style: TextStyle(color: Colors.black87, fontSize: 16.sp,fontFamily: 'Lexend')),
+                            Text(' ${Shiftid}',
+                          style: TextStyle(color: Color.fromARGB(255, 80, 96, 203), fontSize: 18.sp,fontFamily: 'Lexend')),
+                    ],
+                  )
+                  : Text('No Shift',
+                      style: TextStyle(color: Colors.black87, fontSize: 16.sp,fontFamily: 'Lexend')),
+                ],
+              ),
+              SizedBox(height: 5.h,),
+              Row(children: [StreamBuilder<String>(
+                stream: current,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return Text(
+                      '${snapshot.data}',
                       style: TextStyle(fontFamily: 'Lexend',
-                         color:  Color.fromARGB(255, 80, 96, 203), fontSize: 18.sp,
-                          fontWeight: FontWeight.w600,
-                          ),
-                    ),
-                    Text(
-                      "/",
-                      style: TextStyle(fontFamily: 'Lexend',
-                         color:  Color.fromARGB(255, 80, 96, 203), fontSize: 16.sp,),
-                    ),
-                    Text(
-                      "${totalemployee}",
-                      style: TextStyle(fontFamily: 'Lexend',
-                          color:  Color.fromARGB(255, 80, 96, 203), fontSize: 18.sp,),
-                    ),
-                    SizedBox(width: 50.w,),  
-                     ShiftStatus == 1
-                    ? Row(
-                      children: [
-                        Text('Shift Id:',
-                            style: TextStyle(color: Colors.black87, fontSize: 16.sp,fontFamily: 'Lexend')),
-                              Text(' ${Shiftid}',
-                            style: TextStyle(color: Color.fromARGB(255, 80, 96, 203), fontSize: 18.sp,fontFamily: 'Lexend')),
-                      ],
-                    )
-                    : Text('No Shift',
-                        style: TextStyle(color: Colors.black87, fontSize: 16.sp,fontFamily: 'Lexend')),
-                  ],
+                          fontWeight: FontWeight.w400,
+                         color: Colors.black87, fontSize: 16.sp,),
+                    );
+                  } else
+                    return Text(
+                      'Loading',
+                      style: TextStyle(color: Colors.black87, fontSize: 18.sp,fontFamily: 'Lexend',),
+                    );
+                },
+              ),SizedBox(width: 16.w,),  Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ShiftStatus == 1
+                  ? ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.green),
+                  foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
                 ),
-                SizedBox(height: 5.h,),
-                Row(children: [StreamBuilder<String>(
-                  stream: current,
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return Text(
-                        '${snapshot.data}',
-                        style: TextStyle(fontFamily: 'Lexend',
-                            fontWeight: FontWeight.w400,
-                           color: Colors.black87, fontSize: 16.sp,),
-                      );
-                    } else
-                      return Text(
-                        'Loading',
-                        style: TextStyle(color: Colors.black87, fontSize: 18.sp,fontFamily: 'Lexend',),
-                      );
-                  },
-                ),SizedBox(width: 16.w,),  Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ShiftStatus == 1
-                    ? ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.green),
-                    foregroundColor:
-                        MaterialStateProperty.all<Color>(Colors.white),
-                  ),
-                  onPressed: () {
-                    closeShiftPop(context);
-                  },
-                  child: Text('Close Shift',style:TextStyle(color: Colors.white, fontSize: 12.sp,fontFamily: 'Lexend',) ,))
-              :  
-              
-              ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.red),
-                    foregroundColor:
-                        MaterialStateProperty.all<Color>(Colors.white),
-                  ),
-                  onPressed: () async {
+                onPressed: () {
+                  closeShiftPop(context);
+                },
+                child: Text('Close Shift',style:TextStyle(color: Colors.white, fontSize: 12.sp,fontFamily: 'Lexend',) ,))
+            :  
+            
+            ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.red),
+                  foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
+                ),
+                onPressed: () async {
+                  setState(() {
+                    isLoading = true; // Indicate loading
+                  });
+            
+                  try {
+                    // Perform all asynchronous operations
+                    await openShift();
+                    await shiftStatusService.getShiftStatus(
+                        context: context,
+                        deptid: widget.deptid,
+                        processid: widget.processid);
+                    await employeeApiService.employeeList(
+                        context: context,
+                        deptid: widget.deptid ?? 1,
+                        processid: widget.processid ?? 0,
+                        psid: widget.psid ?? 0);
+            
+                        
+                    await attendanceCountService.getAttCount(
+                                    context: context,
+                                    id: widget.processid ?? 0, deptid:widget.deptid ?? 1 , psid: widget.psid ?? 0);
+                                     await planQtyService.getPlanQty(context: context, id: widget.processid ??0, psid: widget.psid ??0 );
+              await actualQtyService.getActualQty(context: context, id: widget.processid??0,psid: widget.psid ??0);
+            
+            
+            
+                  } catch (e) {
+                    // Handle any errors that occur during the async operations
+                    print('Error: $e');
+                  } finally {
                     setState(() {
-                      isLoading = true; // Indicate loading
+                      isLoading = false; // Indicate completion
+                      // Update any other state variables as needed
                     });
+                  }
+                },
+                child: Text('Open Shift'),
+              )
+            ],
+          )],),
               
-                    try {
-                      // Perform all asynchronous operations
-                      await openShift();
-                      await shiftStatusService.getShiftStatus(
-                          context: context,
-                          deptid: widget.deptid,
-                          processid: widget.processid);
-                      await employeeApiService.employeeList(
-                          context: context,
-                          deptid: widget.deptid ?? 1,
-                          processid: widget.processid ?? 0,
-                          psid: widget.psid ?? 0);
-              
-                          
-                      await attendanceCountService.getAttCount(
-                                      context: context,
-                                      id: widget.processid ?? 0, deptid:widget.deptid ?? 1 , psid: widget.psid ?? 0);
-                                       await planQtyService.getPlanQty(context: context, id: widget.processid ??0, psid: widget.psid ??0 );
-                await actualQtyService.getActualQty(context: context, id: widget.processid??0,psid: widget.psid ??0);
-              
-              
-              
-                    } catch (e) {
-                      // Handle any errors that occur during the async operations
-                      print('Error: $e');
-                    } finally {
-                      setState(() {
-                        isLoading = false; // Indicate completion
-                        // Update any other state variables as needed
-                      });
-                    }
-                  },
-                  child: Text('Open Shift'),
-                )
-              ],
-            )],),
-                
-             
-              ],
-            ),
-          
-          ],
-        ),
+           
+            ],
+          ),
+        
+        ],
       ),
     );
   }

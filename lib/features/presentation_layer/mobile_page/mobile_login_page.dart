@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:prominous/features/presentation_layer/mobile_page/mobile%20widget/mobile_login_widget.dart';
-import 'package:prominous/features/presentation_layer/widget/login_widget/login_widget.dart';
+import 'mobile widget/mobile_login_widget.dart';
+
+
 
 
 

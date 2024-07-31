@@ -61,60 +61,98 @@ class _MobileProcessQtyWidgetState extends State<MobileProcessQtyWidget> {
     //  int? achivedProduct=;
 
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 8.w,vertical: 8.h),
+      padding:  EdgeInsets.only(top: 8.h,left: 8.w,right:8.w ),
       child: Container(
         width: double.infinity,
-        height:210.h,
-        decoration: BoxDecoration(),
+        height:220.h,
+       
         child: Column(
           children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.center,
-                    height: 100.h,
-                    decoration: BoxDecoration(
-                        color: Color.fromARGB(150, 235, 236, 255),
-                        borderRadius: BorderRadius.circular(5.r),
-                        border: Border.all(width: 1.w, color: Colors.grey.shade100)),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('${planQty}' ?? "0",
-                            style:
-                                TextStyle(fontSize: 22.sp, color: Colors.black,fontFamily: 'Lexend')),
-                        Text('Planned Qty',
-                            style:
-                                 TextStyle(fontSize: 14.sp, color: Colors.black54,fontFamily: 'Lexend')),
-                      ],
-                    ),
-                  ),
+           Row(
+  children: [
+    Expanded(
+      child: Material(
+        
+        elevation: 3,
+        borderRadius: BorderRadius.circular(5.r),
+        child: Container(
+          alignment: Alignment.center,
+          height: 100.h,
+        
+            decoration: BoxDecoration(
+                            color: Color.fromARGB(150, 235, 236, 255),
+                            borderRadius: BorderRadius.circular(5.r),
+                            border: Border.all(width: 1.w, color: Color.fromARGB(150, 235, 236, 255))
+                            
+                            ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                planQty?.toString() ?? "0",
+                style: TextStyle(
+                  fontSize: 22.sp,
+                  color: Colors.black,
+                  fontFamily: 'Lexend',
                 ),
-                 SizedBox(
-                  width: 8.w,
+              ),
+              Text(
+                'Planned Qty',
+                style: TextStyle(
+                  fontSize: 14.sp,
+                  color: Colors.black54,
+                  fontFamily: 'Lexend',
                 ),
-                Expanded(
-                  child: Container(
-                    height: 100.h,
-                    decoration: BoxDecoration(
-                      color:   Color.fromARGB(150, 235, 236, 255),
-                      borderRadius: BorderRadius.circular(5.r),
-                      border: Border.all(width: 1.w, color: Colors.grey.shade100),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("${actualQty}" ?? "0",
-                            style:  TextStyle(fontSize: 22.sp, color: Colors.black,fontFamily: 'Lexend')),
-                        Text('Actual Qty',
-                            style:  TextStyle(fontSize: 14.sp, color: Colors.black54,fontFamily: 'Lexend')),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    ),
+    SizedBox(
+      width: 8.w,
+    ),
+    Expanded(
+      child: Material(
+        
+        elevation: 3,
+        borderRadius: BorderRadius.circular(5.r),
+        child: Container(
+          height: 100.h,
+          decoration: BoxDecoration(
+            color: Color.fromARGB(150, 235, 236, 255),
+            borderRadius: BorderRadius.circular(5.r),
+            border: Border.all(
+              width: 1.w,
+              color: Colors.grey.shade100,
             ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                actualQty?.toString() ?? "0",
+                style: TextStyle(
+                  fontSize: 22.sp,
+                  color: Colors.black,
+                  fontFamily: 'Lexend',
+                ),
+              ),
+              Text(
+                'Actual Qty',
+                style: TextStyle(
+                  fontSize: 14.sp,
+                  color: Colors.black54,
+                  fontFamily: 'Lexend',
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ),
+  ],
+),
 
              SizedBox(
                   height: 8.h,
@@ -122,23 +160,28 @@ class _MobileProcessQtyWidgetState extends State<MobileProcessQtyWidget> {
                      Row(
               children: [
                 Expanded(
-                  child: Container(
-                    alignment: Alignment.center,
-                    height: 100.h,
-                    decoration: BoxDecoration(
-                        color: Color.fromARGB(150, 235, 236, 255),
-                        borderRadius: BorderRadius.circular(5.r),
-                        border: Border.all(width: 1.w, color: Colors.grey.shade100)),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("0",
-                            style:
-                                TextStyle(fontSize: 22.sp, color: Colors.black,fontFamily: 'Lexend')),
-                        Text('Team Productivity',
-                            style:
-                                 TextStyle(fontSize: 14.sp, color: Colors.black54,fontFamily: 'Lexend')),
-                      ],
+                  child: Material(
+        
+        elevation: 3,
+        borderRadius: BorderRadius.circular(5.r),
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 100.h,
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(150, 235, 236, 255),
+                          borderRadius: BorderRadius.circular(5.r),
+                          border: Border.all(width: 1.w, color: Color.fromARGB(150, 235, 236, 255))),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("0",
+                              style:
+                                  TextStyle(fontSize: 22.sp, color: Colors.black,fontFamily: 'Lexend')),
+                          Text('Team Productivity',
+                              style:
+                                   TextStyle(fontSize: 14.sp, color: Colors.black54,fontFamily: 'Lexend')),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -146,21 +189,26 @@ class _MobileProcessQtyWidgetState extends State<MobileProcessQtyWidget> {
                   width: 8.w,
                 ),
                 Expanded(
-                  child: Container(
-                    height: 100.5.h,
-                    decoration: BoxDecoration(
-                      color:   Color.fromARGB(150, 235, 236, 255),
-                      borderRadius: BorderRadius.circular(5.r),
-                      border: Border.all(width: 1.w, color: Colors.grey.shade100),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("0%",
-                            style:  TextStyle(fontSize: 22.sp, color: Colors.black,fontFamily: 'Lexend')),
-                        Text('Forecast Completion %',
-                            style:  TextStyle(fontSize: 14.sp, color: Colors.black54,fontFamily: 'Lexend')),
-                      ],
+                  child: Material(
+        
+        elevation: 3,
+        borderRadius: BorderRadius.circular(5.r),
+                    child: Container(
+                      height: 100.h,
+                      decoration: BoxDecoration(
+                        color:   Color.fromARGB(150, 235, 236, 255),
+                        borderRadius: BorderRadius.circular(5.r),
+                        border: Border.all(width: 1.w, color: Colors.grey.shade100),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("0%",
+                              style:  TextStyle(fontSize: 22.sp, color: Colors.black,fontFamily: 'Lexend')),
+                          Text('Forecast Completion %',
+                              style:  TextStyle(fontSize: 14.sp, color: Colors.black54,fontFamily: 'Lexend')),
+                        ],
+                      ),
                     ),
                   ),
                 ),
