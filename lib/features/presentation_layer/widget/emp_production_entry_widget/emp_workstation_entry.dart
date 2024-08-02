@@ -1167,7 +1167,7 @@ class _EmpProductionEntryPageState
                       Form(
                         key: _formkey,
                         child: Container(
-                          height: 1000.h,
+                          height: 725.h,
                           width: double.infinity,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5.r),
@@ -1561,7 +1561,7 @@ class _EmpProductionEntryPageState
                                                               ),
                                                             ),
                                                             SizedBox(
-                                                              width: 10.w,
+                                                              width: 15.w,
                                                             ),
                                                             SizedBox(
                                                               width: 150.w,
